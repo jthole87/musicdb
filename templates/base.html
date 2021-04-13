@@ -1,0 +1,22 @@
+{% load static %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Music Database</title>
+        <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <header></header>
+            <nav>
+                <a href="{% url 'song_list' %}">Home</a>
+                <a href="{% url 'song_new' %}">+ New Song</a>
+                <a href="{% url 'recording_new' %}">+ New Recording</a>
+                <a href="{% url 'project_new' %}">+ New Project</a>
+            </nav>
+        <hr>
+            {% block content %}
+            {% endblock content %}
+    </body>
+</html>

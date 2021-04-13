@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    {% for recording in object_list %}
+    <div class="recording-entry">
+        <h2><a href="{% url 'recording_detail' recording.pk %}">{{ recording.title }}</a></h2>
+        <p>{{ recording.project }}</p>
+    </div>
+    {% endfor %}
+{% endblock content %}

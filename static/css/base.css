@@ -1,0 +1,30 @@
+body {
+    background-color: rgb(35, 35, 35);
+    color: rgb(150, 209, 238);
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+}
+
+.grid-container {
+    display: grid;
+}
+
+
+h1 {
+    color: red;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+}
+
+header {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px; 
+}
+
+.h1 {
+    color: aliceblue;
+}
+
+a:visited {
+    color: aliceblue;
+}
