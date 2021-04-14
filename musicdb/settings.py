@@ -139,7 +139,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
-MEDIA_ROOT = 'media/'
+MEDIA_ROOT = '/var/musicdb/media/'
 
 LOGIN_REDIRECT_URL = 'song_list'
 LOGOUT_REDIRECT_URL = 'song_list'
