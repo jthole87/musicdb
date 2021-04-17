@@ -3,8 +3,12 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Recording
+from rest_framework import serializers, viewsets
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
+from .models import Recording
+from .serializers import RecordingSerializer
 
 # Create your views here.
 
@@ -26,3 +30,12 @@ class RecordingCreateView(LoginRequiredMixin, CreateView):
         obj.author = self.request.user
         obj.save()
         return super().form_valid(form)
+
+## API VIEWSETS
+
+class RecordingViewSet(viewsets.ModelViewSet):
+    authentication_classes = []
+    permission_classes = (AllowAny,)
+    queryset = Recording.objects.all()
+    serializer_class = RecordingSerializer
+

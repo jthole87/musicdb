@@ -15,11 +15,10 @@ from pathlib import Path
 
 SERVER = socket.gethostname()
 IP = socket.gethostbyname(SERVER)
-
 SECRET_KEY = os.environ.get('MDB_KEY', 'cg&p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
 ENV = os.environ.get('MDB_ENV', 'DEV')
-DB_USER = os.environ.get('MDB_USER', 'testing')
-DB_PASSWORD = os.environ.get('MDB_PASSWORD', '12345')
+DB_USER = os.environ.get('MDB_USER', 'DEVUSER')
+DB_PASSWORD = os.environ.get('MDB_PASSWORD', 'DEVPASSWORD')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -47,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'corsheaders',
     'rest_framework',
 
     'users.apps.UsersConfig',
@@ -59,7 +57,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -102,16 +99,17 @@ WSGI_APPLICATION = 'musicdb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'musicdb',
-        'USER': DB_USER,
-        'PASSWORD': DB_PASSWORD,
-        'HOST': 'localhost',
-        'PORT': '5432'
+if ENV == 'PROD':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'musicdb',
+            'USER': DB_USER,
+            'PASSWORD': DB_PASSWORD,
+            'HOST': 'localhost',
+            'PORT': '5432'
+        }
     }
-}
 
 
 # Password validation

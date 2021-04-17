@@ -3,7 +3,12 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from rest_framework import viewsets
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated, AllowAny
+
 from .models import Song
+from .serializers import SongSerializer
 
 
 # Create your views here.
@@ -26,3 +31,10 @@ class SongCreateView(LoginRequiredMixin, CreateView):
         obj.author = self.request.user
         obj.save()
         return super().form_valid(form)
+
+## API VIEWSETS
+class SongViewSet(viewsets.ModelViewSet):
+    authentication_classes = []
+    permission_classes = (AllowAny,)
+    queryset = Song.objects.all()
+    serializer_class = SongSerializer
