@@ -15,11 +15,10 @@ from pathlib import Path
 SECRET_KEY = os.environ.get('MDB_KEY', 'cg&p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
 ENV = os.environ.get('MDB_ENV', 'DEV')
 DB_USER = os.environ.get('MDB_USER', 'DEVUSER')
-DB_PASSWORD = os.environ.get('MDB_PASS', 'DEVPASSWORD')
+DB_PASSWORD = os.environ.get('MDB_PASSWORD', 'DEVPASSWORD')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -30,19 +29,22 @@ if ENV == 'DEV':
     ALLOWED_HOSTS = ['*']
 else:
     DEBUG = False
-    ALLOWED_HOSTS = ['localhost','127.0.0.1']
+    ALLOWED_HOSTS = ['localhost','127.0.0.1','10.0.0.19']
 
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'rest_framework',
 
     'users.apps.UsersConfig',
     'songs.apps.SongsConfig',
@@ -80,6 +82,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'musicdb.wsgi.application'
 
+# TODO: ASGI STUFF
+ASGI_APPLICATION = 'musicdb.routing.application'
+
+CHANNEL_LAYERS = {
+    'default' : {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('127.0.0.1',6379')],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
