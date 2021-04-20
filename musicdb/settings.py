@@ -13,6 +13,7 @@ import os
 import socket
 from pathlib import Path
 
+
 SERVER = socket.gethostname()
 IP = socket.gethostbyname(SERVER)
 
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'debug_toolbar',
     'corsheaders',
     'rest_framework',
 

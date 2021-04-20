@@ -13,18 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
+import debug_toolbar
 
 from projects.views import ProjectViewSet
 from recordings.views import RecordingViewSet
 from songs.views import SongViewSet
+from users.views import CustomUserViewSet
 
 router = routers.DefaultRouter()
-router.register('api/projects',ProjectViewSet)
+router.register('api/projects', ProjectViewSet)
 router.register('api/recordings', RecordingViewSet)
 router.register('api/songs', SongViewSet)
+router.register('api/users', CustomUserViewSet)
 
 
 urlpatterns = [
@@ -34,5 +38,6 @@ urlpatterns = [
     path('projects/', include('projects.urls')),
     path('recordings/', include('recordings.urls')),
     #path('accounts/', include('users.urls')),
-    path('accounts/', include('django.contrib.auth.urls'))
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('__debug__/', include(debug_toolbar.urls)),
 ]

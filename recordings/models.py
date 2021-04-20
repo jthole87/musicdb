@@ -10,15 +10,16 @@ class Recording(models.Model):
     def upload_path(self):
         project = self.song.project
         title = self.song.title
-        return ('{}/{}/'.format(project, title))
+        return '{}/{}/'.format(project, title)
 
     author = models.ForeignKey(get_user_model(), on_delete=PROTECT)
     name = models.CharField(max_length=255)
     created_on = models.DateTimeField(auto_now_add=True)
-    notes = models.TextField(max_length=80000, blank=True, null=True)
-    recording = models.FileField(upload_to=upload_path)
+    notes = models.TextField(max_length=80000, blank=True)
+    recording = models.FileField(upload_to='uploads/')
     song = models.ForeignKey('songs.Song', on_delete=PROTECT, blank=True, null=True)
-    
+    part = models.ForeignKey('songs.StructurePart', on_delete=PROTECT, blank=True, null=True)
+
     def __str__(self):
         return self.name
 
