@@ -22,6 +22,7 @@ ENV = os.environ.get('MDB_ENV', 'DEV')
 DB_USER = os.environ.get('MDB_USER', 'testing')
 DB_PASSWORD = os.environ.get('MDB_PASSWORD', '12345')
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
