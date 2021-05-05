@@ -6,4 +6,4 @@ class RecordingSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Recording
         fields = (['author','name','created_on',
-                            'notes','recording','song', 'part'])
+                            'notes','recording','song', 'part','project'])

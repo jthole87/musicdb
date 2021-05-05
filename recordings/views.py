@@ -23,7 +23,7 @@ class RecordingDetailView(DetailView):
 class RecordingCreateView(LoginRequiredMixin, CreateView):
     model = Recording
     template_name = "recording_new.html"
-    fields = ['name','notes','recording','song']
+    fields = (['name','notes','recording','song','project'])
 
     def form_valid(self, form):
         obj = form.save(commit=False)

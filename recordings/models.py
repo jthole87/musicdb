@@ -19,6 +19,7 @@ class Recording(models.Model):
     recording = models.FileField(upload_to='uploads/')
     song = models.ForeignKey('songs.Song', on_delete=PROTECT, blank=True, null=True)
     part = models.ForeignKey('songs.StructurePart', on_delete=PROTECT, blank=True, null=True)
+    project = models.ForeignKey('projects.Project', on_delete=PROTECT, blank=False, null=False)
 
     def __str__(self):
         return self.name
