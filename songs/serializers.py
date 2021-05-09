@@ -7,3 +7,4 @@ class SongSerializer(serializers.HyperlinkedModelSerializer):
         model = Song
         fields = (['author','title','created_on',
                             'last_updated','project'])
+    

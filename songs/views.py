@@ -7,6 +7,8 @@ from rest_framework import viewsets
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
+from url_filter.integrations.drf import DjangoFilterBackend
+
 from .models import Song
 from .serializers import SongSerializer
 
@@ -38,3 +40,7 @@ class SongViewSet(viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
     queryset = Song.objects.all()
     serializer_class = SongSerializer
+
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ('author', 'title', 'project')
+

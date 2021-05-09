@@ -22,6 +22,8 @@ ENV = os.environ.get('MDB_ENV', 'DEV')
 DB_USER = os.environ.get('MDB_USER', 'testing')
 DB_PASSWORD = os.environ.get('MDB_PASSWORD', '12345')
 
+if ENV == 'DEV':
+    CORS_ORIGIN_ALLOW_ALL = True
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -52,6 +54,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'corsheaders',
     'rest_framework',
+    'channels',
 
     'users.apps.UsersConfig',
     'songs.apps.SongsConfig',
@@ -91,7 +94,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'musicdb.wsgi.application'
 
 # TODO: ASGI STUFF
-#ASGI_APPLICATION = 'musicdb.routing.application'
+ASGI_APPLICATION = 'musicdb.asgi.application'
+CHANNEL_LAYERS = {
+"default": {
+"BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 #CHANNEL_LAYERS = {
 #    'default' : {
@@ -162,3 +170,4 @@ MEDIA_ROOT = '/var/musicdb/media/'
 
 LOGIN_REDIRECT_URL = 'song_list'
 LOGOUT_REDIRECT_URL = 'song_list'
+
