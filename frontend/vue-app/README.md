@@ -1,4 +1,4 @@
-# musicdb-vue
+# vue-app
 
 ## Project setup
 ```
